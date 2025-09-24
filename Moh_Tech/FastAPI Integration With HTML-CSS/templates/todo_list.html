@@ -1,3 +1,29 @@
-{% for todo in todos %}
-    <div>{{todo.title}} - {{todo.description}}</div>
-{% endfor %}
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-3">
+    <h3>Todos</h3>
+    <a class="btn btn-primary mt-3 " href="/todo/create">Create ToDo</a>
+    <table class="table mt-3">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">ToDo Title</th>
+      <th scope="col">ToDo Description</th>
+      <th scope="col">ToDo Done</th>
+      <th scope="col">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for todo in todos %}
+    <tr>
+      <th scope="row">{{ loop.index }}</th>
+      <td>{{ todo.title }}</td>
+      <td>{{ todo.description }}</td>
+      <td>{{ todo.done }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock content %}

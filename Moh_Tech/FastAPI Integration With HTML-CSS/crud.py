@@ -29,7 +29,11 @@ def show_todo(request: Request, db: Session = Depends(get_db)):
     todos = db.query(ToDo).all()
     return templates.TemplateResponse('todo_list.html',{"request":request, "todos":todos})
 
-@router.post('/', response_model=ToDoResponse)
+@router.get('/create')
+def create_todo(request:Request):
+    return templates.TemplateResponse('create_todo.html',{"request":request})
+
+@router.post('/create')
 def create_todo(todo: ToDoCreate, db: Session = Depends(get_db)):
     new_todo = ToDo(title = todo.title, description = todo.description, done = todo.done)
     db.add(new_todo)
