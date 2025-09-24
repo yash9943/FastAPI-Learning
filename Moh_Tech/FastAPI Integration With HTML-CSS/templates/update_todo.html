@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h3 class="mt-3">Update To-Do</h3>
+    <!-- Fixed: Changed action from "/create" to "/todo/create" -->
+    <form class="mt-3" action="/todo/update/{{todo.id}}"  method="post">
+        <div class="mb-3">
+            <label for="title" class="form-label">ToDo Title</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{ todo.title }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">ToDo description</label>
+            <textarea class="form-control" id="description" name="description" required>{{ todo.description }}</textarea>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="done" name="done" value="true" {% if todo.done %}checked{% endif %}>
+            <label class="form-check-label" for="done">Mark as Done</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Update ToDo</button>
+    </form>
+</div>
+{% endblock content %}

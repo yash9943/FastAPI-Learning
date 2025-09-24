@@ -17,10 +17,20 @@
   <tbody>
     {% for todo in todos %}
     <tr>
-      <th scope="row">{{ loop.index }}</th>
+      <th scope="row">{{ todo.id }}</th>
       <td>{{ todo.title }}</td>
       <td>{{ todo.description }}</td>
-      <td>{{ todo.done }}</td>
+      <td>
+        {% if todo.done %}
+            Done
+        {% else %}
+            Pending
+        {% endif %}
+      </td>
+      <td>
+        <a href="/todo/update/{{ todo.id }}" class="btn btn-warning btn-sm mx-1">Edit</a>
+        <a href="/todo/delete/{{ todo.id }}" class="btn btn-danger btn-sm mx-1">Delete</a>
+      </td>
     </tr>
     {% endfor %}
   </tbody>
